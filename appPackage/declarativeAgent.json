@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.6/schema.json",
+  "version": "v1.6",
+  "name": "HR Onboarding Agent",
+  "description": "Helps new employees navigate their first 90 days — from setup to team introductions and benefits enrollment.",
+  "instructions": "$[file('instruction.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Week 1 checklist",
+      "text": "What's my first week checklist as a new employee?"
+    },
+    {
+      "title": "Dev environment setup",
+      "text": "How do I set up my development environment?"
+    },
+    {
+      "title": "Who should I meet?",
+      "text": "Who should I connect with in my first month?"
+    },
+    {
+      "title": "Benefits enrollment",
+      "text": "How do I enroll in company benefits?"
+    },
+    {
+      "title": "Company policies",
+      "text": "Where can I find the leave and time-off policy?"
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "OneDriveAndSharePoint",
+      "items_by_url": [
+        {
+          "url": "https://microsoft-my.sharepoint.com/personal/v-vermasank_microsoft_com/Documents/Desktop/HR Onboarding Agent/appPackage/EmbeddedKnowledge/Onboarding_Checklist 1.docx"
+        },
+        {
+          "url": "https://microsoft-my.sharepoint.com/personal/v-vermasank_microsoft_com/Documents/Desktop/HR Onboarding Agent/appPackage/EmbeddedKnowledge/Employee_Benefits_Guide.docx"
+        },
+        {
+          "url": "https://microsoft-my.sharepoint.com/personal/v-vermasank_microsoft_com/Documents/Desktop/HR Onboarding Agent/appPackage/EmbeddedKnowledge/IT_Setup_Guide.docx"
+        },
+        {
+          "url": "https://microsoft-my.sharepoint.com/personal/v-vermasank_microsoft_com/Documents/Desktop/HR Onboarding Agent/appPackage/EmbeddedKnowledge/Company_Policies_Summary.docx"
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "text": "This agent is for employees only. Information is sourced from the HR SharePoint site. For urgent HR matters, contact hr@contoso.com directly."
+  }
+}
