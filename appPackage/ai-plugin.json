@@ -1,0 +1,100 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.3/schema.json",
+    "schema_version": "v2.3",
+    "name_for_human": "Posts API",
+    "description_for_human": "Description for Posts API",
+    "description_for_model": "Description for Posts API",
+    "contact_email": "publisher-email@example.com",
+    "namespace": "hronboardingagent",
+    "capabilities": {},
+    "functions": [
+        {
+            "name": "createPost",
+            "description": "Creates a new blog post"
+        },
+        {
+            "name": "deletePost",
+            "description": "Deletes a post by its ID"
+        },
+        {
+            "name": "getPost",
+            "description": "Returns a single blog post by its ID",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/getPost.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "getUser",
+            "description": "Returns a single user by their ID",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/getUser.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "listPosts",
+            "description": "Returns a list of all blog posts",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/listPosts.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "listUsers",
+            "description": "Returns a list of all users",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/listUsers.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "updatePost",
+            "description": "Updates fields of an existing post",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/updatePost.json"
+                    }
+                }
+            }
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "OpenApi",
+            "auth": {
+                "type": "None"
+            },
+            "spec": {
+                "url": "apiSpecificationFile/openapi.yaml"
+            },
+            "run_for_functions": [
+                "listPosts",
+                "createPost",
+                "getPost",
+                "updatePost",
+                "deletePost",
+                "listUsers",
+                "getUser"
+            ]
+        }
+    ]
+}

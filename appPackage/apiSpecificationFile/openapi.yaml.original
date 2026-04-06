@@ -1,0 +1,201 @@
+openapi: '3.0.2'
+info:
+  title: Posts API
+  version: '1.0'
+servers:
+- url: https://jsonplaceholder.typicode.com/
+
+components:
+  schemas:
+    post:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: The ID of the user that authored the post.
+        id:
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
+    user:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        website:
+          type: string
+        address:
+          $ref: '#/components/schemas/address'
+        company:
+          $ref: '#/components/schemas/company'
+    address:
+      type: object
+      properties:
+        street:
+          type: string
+        suite:
+          type: string
+        city:
+          type: string
+        zipcode:
+          type: string
+        geo:
+          $ref: '#/components/schemas/coordinates'
+    coordinates:
+      type: object
+      properties:
+        lat:
+          type: string
+          description: The latitude of the location
+        lng:
+          type: string
+          description: The longitude of the location
+    company:
+      type: object
+      properties:
+        name:
+          type: string
+        catchPhrase:
+          type: string
+        bs:
+          type: string
+  parameters:
+    post-id:
+      name: post-id
+      in: path
+      description: 'key: id of post'
+      required: true
+      style: simple
+      schema:
+        type: integer
+    user-id:
+      name: user-id
+      in: path
+      description: 'key: id of user'
+      required: true
+      style: simple
+      schema:
+        type: integer
+
+paths:
+  /posts:
+    get:
+      operationId: listPosts
+      summary: Get all posts
+      description: Returns a list of all blog posts
+      parameters:
+        - name: userId
+          in: query
+          description: Filter posts by user ID
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/post'
+    post:
+      operationId: createPost
+      summary: Create a new post
+      description: Creates a new blog post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post'
+      responses:
+        '201':
+          description: Post created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post'
+
+  /posts/{post-id}:
+    get:
+      operationId: getPost
+      summary: Get a post by ID
+      description: Returns a single blog post by its ID
+      parameters:
+        - $ref: '#/components/parameters/post-id'
+      responses:
+        '200':
+          description: A single post
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post'
+    patch:
+      operationId: updatePost
+      summary: Update a post
+      description: Updates fields of an existing post
+      parameters:
+        - $ref: '#/components/parameters/post-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post'
+      responses:
+        '200':
+          description: Post updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post'
+    delete:
+      operationId: deletePost
+      summary: Delete a post
+      description: Deletes a post by its ID
+      parameters:
+        - $ref: '#/components/parameters/post-id'
+      responses:
+        '200':
+          description: Post deleted successfully
+
+  /users:
+    get:
+      operationId: listUsers
+      summary: Get all users
+      description: Returns a list of all users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+
+  /users/{user-id}:
+    get:
+      operationId: getUser
+      summary: Get a user by ID
+      description: Returns a single user by their ID
+      parameters:
+        - $ref: '#/components/parameters/user-id'
+      responses:
+        '200':
+          description: A single user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
