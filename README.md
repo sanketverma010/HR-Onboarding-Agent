@@ -1,22 +1,26 @@
-# HR Onboarding Agent
+# Declarative Agent for Microsoft 365 Copilot
 
-Helps new employees navigate their first 90 days — from setup to team introductions and benefits enrollment.
+A declarative agent that extends Microsoft 365 Copilot with custom capabilities.
 
-## What This Agent Does
+## Capabilities
 
-- **Week 1 checklist**: Get your first week checklist as a new employee
-- **Dev environment setup**: Learn how to set up your development environment
-- **Who should I meet?**: Find out who to connect with in your first month
-- **Benefits enrollment**: Learn how to enroll in company benefits
-- **Company policies**: Access leave and time-off policies
+### OneDrive and SharePoint Integration
+The agent can access documents from OneDrive and SharePoint to provide domain-specific knowledge. Files are referenced by URL in the agent configuration.
 
-## Knowledge Sources
+### API Actions
+The agent includes custom API actions defined through an OpenAPI specification:
+- **API Plugin** (`ai-plugin.json`) - Defines the plugin metadata and capabilities
+- **OpenAPI Specification** (`openapi.yaml`) - Defines available API endpoints and operations
+- **Adaptive Cards** - Provides rich UI responses for API results
 
-This agent has access to:
-- Onboarding Checklist
-- Employee Benefits Guide
-- IT Setup Guide
-- Company Policies Summary
+### Conversation Starters
+Pre-configured prompts help users quickly interact with the agent and discover its capabilities.
+
+### Custom Instructions
+The agent follows custom instructions defined in `instruction.txt` that guide its behavior and responses.
+
+### Disclaimer
+The agent displays a disclaimer to users about its intended use and limitations.
 
 ## Prerequisites
 
@@ -29,14 +33,16 @@ This agent has access to:
 1. Open the Microsoft 365 Agents Toolkit in VS Code
 2. Sign in with your Microsoft 365 account
 3. Select `Preview Local in Copilot (Edge)` or `Preview Local in Copilot (Chrome)`
-4. Select the HR Onboarding Agent from Copilot
-5. Start asking questions about onboarding
+4. Select the declarative agent from Copilot
+5. Start interacting with the agent
 
-## Files
+## Project Structure
 
-- `appPackage/declarativeAgent.json` - Agent configuration
-- `appPackage/instruction.txt` - Agent instructions
-- `appPackage/ai-plugin.json` - API plugin
-- `appPackage/apiSpecificationFile/openapi.yaml` - API specification
-- `appPackage/adaptiveCards/` - Response templates
-- `appPackage/EmbeddedKnowledge/` - Knowledge documents
+| File | Description |
+|------|-------------|
+| `appPackage/declarativeAgent.json` | Main agent configuration with capabilities and actions |
+| `appPackage/instruction.txt` | Custom instructions for agent behavior |
+| `appPackage/ai-plugin.json` | API plugin configuration |
+| `appPackage/apiSpecificationFile/openapi.yaml` | OpenAPI specification for API actions |
+| `appPackage/adaptiveCards/` | Adaptive card templates for rich responses |
+| `appPackage/EmbeddedKnowledge/` | Knowledge source documents |
